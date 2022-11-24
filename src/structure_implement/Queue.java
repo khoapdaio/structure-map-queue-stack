@@ -12,7 +12,6 @@ public class Queue <T>{
     }
     void enqueue(T key)
     {
-
         // Tạo mới một Node
         Node<T> temp = new Node<>(key);
 
@@ -33,11 +32,9 @@ public class Queue <T>{
         //  Nếu Queue là rỗng thì trả về null
         if (this.front == null)
             return;
-
         // Lưu trữ đường dẫn tham chiếu của front
         // và chuyển đường dẫn tham chiếu của front đến phần tử đằng sau nó
         this.front=this.front.getNext();
-
         // If front becomes NULL, then change rear also as
         // NULL
         if (this.front == null)
