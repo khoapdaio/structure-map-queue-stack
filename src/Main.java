@@ -32,7 +32,6 @@ public class Main {
             System.out.print(element+",");
         }
     }
-
     static void testMap() {
 
     }

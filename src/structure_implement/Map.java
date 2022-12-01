@@ -44,9 +44,28 @@ public class Map<K, V> {
         lastElementOfBucket.setNext(newNodeKV);
         size++;
     }
-
-    public V get(K key) throws NullPointerException {
-        int hashValue = key.hashCode() & (10 - 1);
+    public V setValue(K key,V value)throws NullPointerException{
+        int hashValue = key.hashCode() & (CAPACITY - 1);
+        NodeKV<K, V> headElementOfBucket = hashTable[hashValue];
+        if (headElementOfBucket.getKey().equals(key)) {
+            headElementOfBucket.setValue(value);
+            return value;
+        }
+        if (headElementOfBucket.getNext() == null) {
+            return null;
+        }
+        NodeKV<K, V> elementToFindInBucket = headElementOfBucket;
+        while (elementToFindInBucket.getNext() != null) {
+            elementToFindInBucket = elementToFindInBucket.getNext();
+            if (elementToFindInBucket.getKey().equals(key)) {
+                elementToFindInBucket.setValue(value);
+                return value;
+            }
+        }
+        return null;
+    }
+    public V getValue(K key) throws NullPointerException {
+        int hashValue = key.hashCode() & (CAPACITY - 1);
         NodeKV<K, V> headElementOfBucket = hashTable[hashValue];
         if (headElementOfBucket.getKey().equals(key)) {
             return headElementOfBucket.getValue();
