@@ -18,18 +18,28 @@ public class QueueOneWay<T> {
             this.head = newElementOfQueue;
             return;
         }
-        NodeQueue<T> lastElementOfQueue=this.head;
-        while(lastElementOfQueue.getNext()!=null){
-            lastElementOfQueue=lastElementOfQueue.getNext();
-        }
+        NodeQueue<T> lastElementOfQueue= getTailRecursive(this.head);
         lastElementOfQueue.setNext(newElementOfQueue);
 
     }
+
+
     public void dequeue() {
         if (this.head == null)
             return;
 
         this.head = this.head.getNext();
+    }
+    public NodeQueue<T> getTailRecursive(NodeQueue<T> nodeStartFind){
+        if(nodeStartFind==null){
+            return null;
+        }
+        if(nodeStartFind.getNext()==null){
+            return nodeStartFind;
+        }else {
+            return getTailRecursive(nodeStartFind.getNext());
+        }
+
     }
 
     public NodeQueue<T> getTail(){
