@@ -1,18 +1,21 @@
 package baseNode;
 
-public class NodeKV <K,V>{
+public class NodeKV<K, V> {
     private final K key;
-    private  V value;
-    private  NodeKV<K,V>  next;
+    private final int hash;
+    private V value;
+    private NodeKV<K, V> next;
 
     public NodeKV(K key, V value, NodeKV<K, V> next) {
         this.key = key;
+        this.hash = hashCode();
         this.value = value;
         this.next = next;
     }
 
     public NodeKV(K key, V value) {
         this.key = key;
+        this.hash = hashCode();
         this.value = value;
     }
 
@@ -34,5 +37,23 @@ public class NodeKV <K,V>{
 
     public void setNext(NodeKV<K, V> next) {
         this.next = next;
+    }
+
+    public int getHash() {
+        return hash;
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public String toString() {
+        return "NodeKV{" +
+                "key=" + key +
+                ", value=" + value +
+                '}';
     }
 }
