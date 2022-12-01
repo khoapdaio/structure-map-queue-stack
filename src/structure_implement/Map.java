@@ -1,7 +1,6 @@
 package structure_implement;
 
-import base.Node;
-import base.NodeKV;
+import baseNode.NodeKV;
 
 public class Map<K, V> {
     private int size = 0;

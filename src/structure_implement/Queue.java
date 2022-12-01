@@ -1,43 +1,39 @@
 package structure_implement;
 
-import base.Node;
+import baseNode.NodeQueue;
 
-public class Queue <T>{
-    private Node<T> front;
-    private Node<T> rear;
+public class Queue<T> {
+    public NodeQueue<T> head;
+    public NodeQueue<T> tail;
 
-    public Queue(Node<T> front, Node<T> rear) {
-        this.front = front;
-        this.rear = rear;
+    public Queue() {
     }
-    void enqueue(T key)
-    {
-        // Tạo mới một Node
-        Node<T> temp = new Node<>(key);
 
-        // nếu Queue trống , thì thêm đường dẫn tham chiếu của temp vào front và rear
-        if (this.rear == null) {
-            this.front = this.rear = temp;
+    public Queue(NodeQueue<T> head, NodeQueue<T> tail) {
+        this.head = head;
+        this.tail = tail;
+    }
+
+    public void enqueue(T value) {
+        NodeQueue<T> newElementOfQueue = new NodeQueue<>(value);
+        NodeQueue<T> lastElementOfQueue=this.tail;
+        if (this.tail == null) {
+            this.head = newElementOfQueue;
+            this.tail = newElementOfQueue;
             return;
         }
+        lastElementOfQueue.setNext(newElementOfQueue);
+        this.tail = newElementOfQueue;
 
-        //  thêm  node mới tạo vào cuối queue và thay đổi đường dãn tham chiếu của rear
-        this.rear.setNext(temp);
-        this.rear = temp;
     }
 
-    // phương thức để xóa một node từ queue
-    void dequeue()
-    {
-        //  Nếu Queue là rỗng thì trả về null
-        if (this.front == null)
+    public void dequeue() {
+        if (this.head == null)
             return;
-        // Lưu trữ đường dẫn tham chiếu của front
-        // và chuyển đường dẫn tham chiếu của front đến phần tử đằng sau nó
-        this.front=this.front.getNext();
-        // If front becomes NULL, then change rear also as
-        // NULL
-        if (this.front == null)
-            this.rear = null;
+
+        this.head = this.head.getNext();
+
+        if (this.head == null)
+            this.tail = null;
     }
 }
