@@ -42,8 +42,23 @@ public class QueueOneWay<T> {
 
     }
 
+    public void display(){
+        NodeQueue<T> elementOfQueue =this.head;
+        if(elementOfQueue ==null){
+            return ;
+        }
+        System.out.print(elementOfQueue.getValue());
+        while(elementOfQueue.getNext()!=null){
+            elementOfQueue = elementOfQueue.getNext();
+            System.out.print(","+elementOfQueue.getValue());
+        }
+        System.out.println("\n");
+    }
     public NodeQueue<T> getTail(){
         NodeQueue<T> lastElementOfQueue=this.head;
+        if(lastElementOfQueue==null){
+            return null;
+        }
         while(lastElementOfQueue.getNext()!=null){
             lastElementOfQueue=lastElementOfQueue.getNext();
         }

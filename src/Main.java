@@ -4,6 +4,10 @@ import structure_implement.QueueOneWay;
 
 public class Main {
     public static void main(String[] args) {
+        testQueue();
+    }
+
+    static void testMap() {
         Map<Integer, String> map = new Map<>();
         map.put(1, "khoa1");
         map.put(2, "khoa2");
@@ -23,45 +27,50 @@ public class Main {
         map.put(16, "khoa16");
         map.put(17, "khoa17");
         map.put(18, "khoa18");
+        map.put(10000, "khoa1000000");
         map.display();
-        for (Integer element: map.getKey()) {
-            System.out.print(element+",");
+        for (Integer element : map.getKey()) {
+            System.out.print(element + ",");
         }
         System.out.println("\n");
-        for (String element: map.getValue()) {
-            System.out.print(element+",");
+        for (String element : map.getValue()) {
+            System.out.print(element + ",");
         }
-    }
-    static void testMap() {
-
     }
 
     static void testQueue() {
         QueueOneWay<Integer> queue = new QueueOneWay<>();
         queue.enqueue(1);
-        System.out.println("queue: head: " + queue.head.getValue());
-        System.out.println("queue: head next: " + queue.head.getNext());
-        System.out.println("queue: tail: " + queue.getTail().getValue());
-        System.out.println("queue: tail next: " + queue.getTail().getNext());
+//        System.out.println("queue: head: " + queue.head.getValue());
+//        System.out.println("queue: head next: " + queue.head.getNext());
+//        System.out.println("queue: tail: " + queue.getTail().getValue());
+//        System.out.println("queue: tail next: " + queue.getTail().getNext());
         queue.enqueue(2);
-        System.out.println("queue: head: " + queue.head.getValue());
-        System.out.println("queue: head next: " + queue.head.getNext().getValue());
-        System.out.println("queue: tail: " + queue.getTail().getValue());
-        System.out.println("queue: tail next: " + queue.getTail().getNext());
+        queue.display();
+//        System.out.println("queue: head: " + queue.head.getValue());
+//        System.out.println("queue: head next: " + queue.head.getNext().getValue());
+//        System.out.println("queue: tail: " + queue.getTail().getValue());
+//        System.out.println("queue: tail next: " + queue.getTail().getNext());
         queue.enqueue(3);
-        System.out.println("queue: head: " + queue.head.getValue());
-        System.out.println("queue: head next: " + queue.head.getNext().getValue());
-        System.out.println("queue: tail: " + queue.getTail().getValue());
-        System.out.println("queue: tail next: " + queue.getTail().getNext());
+        queue.enqueue(2);
+        queue.enqueue(2);
+        queue.enqueue(2);
+        queue.enqueue(2);
+
+//        System.out.println("queue: head: " + queue.head.getValue());
+//        System.out.println("queue: head next: " + queue.head.getNext().getValue());
+//        System.out.println("queue: tail: " + queue.getTail().getValue());
+//        System.out.println("queue: tail next: " + queue.getTail().getNext());
         System.out.println("DEQUEUE------------------");
-        queue.dequeue();
-        System.out.println("queue: head: " + queue.head.getValue());
-        System.out.println("queue: tail: " + queue.getTail().getValue());
-        queue.dequeue();
-        System.out.println("queue: head: " + queue.head.getValue());
-        System.out.println("queue: tail: " + queue.getTail().getValue());
-        queue.dequeue();
-        System.out.println("queue: head: " + queue.head.getValue());
-        System.out.println("queue: tail: " + queue.getTail().getValue());
+//        queue.dequeue();
+//        System.out.println("queue: head: " + queue.head.getValue());
+//        System.out.println("queue: tail: " + queue.getTail().getValue());
+//        queue.dequeue();
+//        System.out.println("queue: head: " + queue.head.getValue());
+//        System.out.println("queue: tail: " + queue.getTail().getValue());
+//        queue.dequeue();
+//        System.out.println("queue: head: " + queue.head.getValue());
+//        System.out.println("queue: tail: " + queue.getTail().getValue());
+        queue.display();
     }
 }

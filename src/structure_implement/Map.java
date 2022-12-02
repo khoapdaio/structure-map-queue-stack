@@ -3,7 +3,6 @@ package structure_implement;
 import baseNode.NodeKV;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 public class Map<K, V> {
@@ -17,7 +16,7 @@ public class Map<K, V> {
 
     public void put(K key, V value) {
         NodeKV<K, V> newNodeKV = new NodeKV<>(key, value);
-        int hashValue = newNodeKV.getKey().hashCode() & (CAPACITY - 1);
+        int hashValue = (newNodeKV.getKey().hashCode()-1)& (CAPACITY-1);
         NodeKV<K, V> headElementOfBucket = hashTable[hashValue];
         if (headElementOfBucket == null) {
             hashTable[hashValue] = newNodeKV;
