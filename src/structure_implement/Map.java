@@ -1,42 +1,43 @@
 package structure_implement;
 
 import baseNode.NodeKV;
+import sun.security.mscapi.PRNG;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Map<K, V> {
-    static int CAPACITY = 8;
+    static int DEFAULT_CAPACITY = 8;
     private int size = 0;
     private NodeKV<K, V>[] hashTable;
 
     public Map() {
-        hashTable = new NodeKV[CAPACITY];
+        hashTable = new NodeKV[DEFAULT_CAPACITY];
     }
 
     public void put(K key, V value) {
         NodeKV<K, V> newNodeKV = new NodeKV<>(key, value);
-        int hashValue = (newNodeKV.getKey().hashCode()-1)& (CAPACITY-1);
-        NodeKV<K, V> headElementOfBucket = hashTable[hashValue];
-        if (headElementOfBucket == null) {
+        int hashValue = (newNodeKV.getKey().hashCode()-1)& (DEFAULT_CAPACITY -1);
+        NodeKV<K, V> firstElementOfBucket = hashTable[hashValue];
+        if (firstElementOfBucket == null) {
             hashTable[hashValue] = newNodeKV;
             size++;
             return;
         }
-        if (headElementOfBucket.getNext() == null) {
-            if (headElementOfBucket.getKey().equals(key)) {
-                headElementOfBucket.setValue(value);
+        if (firstElementOfBucket.getNext() == null) {
+            if (firstElementOfBucket.getKey().equals(key)) {
+                firstElementOfBucket.setValue(value);
             } else {
-                headElementOfBucket.setNext(newNodeKV);
+                firstElementOfBucket.setNext(newNodeKV);
                 size++;
             }
             return;
         }
-        NodeKV<K, V> lastElementOfBucket = headElementOfBucket;
+        NodeKV<K, V> lastElementOfBucket = firstElementOfBucket;
         while (lastElementOfBucket.getNext() != null) {
             lastElementOfBucket = lastElementOfBucket.getNext();
-            if (headElementOfBucket.getKey().equals(key)) {
-                headElementOfBucket.setValue(value);
+            if (firstElementOfBucket.getKey().equals(key)) {
+                firstElementOfBucket.setValue(value);
                 return;
             }
         }
@@ -44,7 +45,7 @@ public class Map<K, V> {
         size++;
     }
     public V setValue(K key,V value)throws NullPointerException{
-        int hashValue = key.hashCode() & (CAPACITY - 1);
+        int hashValue = key.hashCode() & (DEFAULT_CAPACITY - 1);
         NodeKV<K, V> headElementOfBucket = hashTable[hashValue];
         if (headElementOfBucket.getKey().equals(key)) {
             headElementOfBucket.setValue(value);
@@ -63,8 +64,9 @@ public class Map<K, V> {
         }
         return null;
     }
+
     public V getValue(K key) throws NullPointerException {
-        int hashValue = key.hashCode() & (CAPACITY - 1);
+        int hashValue = key.hashCode() & (DEFAULT_CAPACITY - 1);
         NodeKV<K, V> headElementOfBucket = hashTable[hashValue];
         if (headElementOfBucket.getKey().equals(key)) {
             return headElementOfBucket.getValue();
